@@ -115,12 +115,12 @@ class Runner{
 
         gamePiece.move(random.nextInt(100),random.nextInt(500));
 
-        if((gamePiece.getPositionX() >= 0) &&
-                (gamePiece.getPositionX() <= 100) &&
-        (gamePiece.getPositionY() <= 500) &&
-                 (gamePiece.getPositionY() >= 0)) {
+        if((gamePiece.getMinX() >= 0) &&
+                (gamePiece.getMaxX() <= 100) &&
+        (gamePiece.getMaxY() <= 500) &&
+                 (gamePiece.getMinY() >= 0)) {
             System.out.println("X is at position " + gamePiece.getPositionX());
-            System.out.println("Y is at position  " + gamePiece.getPositionX());
+            System.out.println("Y is at position  " + gamePiece.getPositionY());
             gamePiece.freeze();
         }
         if(gamePiece.isFrozen() == true){
