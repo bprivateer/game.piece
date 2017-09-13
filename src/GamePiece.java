@@ -12,8 +12,7 @@ public class GamePiece {
     boolean frozen;
 
 
-
-    public GamePiece(){
+    public GamePiece() {
         this.positionX = 0;
         this.positionY = 0;
         this.minX = 0;
@@ -23,7 +22,7 @@ public class GamePiece {
         this.frozen = false;
     }
 
-    public GamePiece(String name, String color){
+    public GamePiece(String name, String color) {
         this.positionX = 0;
         this.positionY = 0;
         this.minX = 0;
@@ -55,35 +54,38 @@ public class GamePiece {
     public int getPositionX() {
         return this.positionX;
     }
-    public int getPositionY(){
+
+    public int getPositionY() {
         return this.positionY;
     }
-    public boolean isFrozen(){
+
+    public boolean isFrozen() {
         return this.frozen;
     }
 
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public String getColor(){
+    public String getColor() {
         return this.color;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
-    public void setColor(String color){
+
+    public void setColor(String color) {
         this.color = color;
     }
 
-    public void move(int newX, int newY){
-        if(!this.isFrozen()){
+    public void move(int newX, int newY) {
+        if (!this.isFrozen()) {
             this.positionX = newX;
             this.positionY = newY;
         }
-        if(getMinX() <= newX && newX <= getMaxX() && getMinY() <= newY && newY <= getMaxY()){
+        if (getMinX() <= newX && newX <= getMaxX() && getMinY() <= newY && newY <= getMaxY()) {
             this.positionY = newY;
             this.positionX = newX;
             System.out.println("Moved");
@@ -94,12 +96,14 @@ public class GamePiece {
         }
 
     }
-//
+
+    //
     public void freeze() {
         this.frozen = true;
         System.out.println("Gamepiece is frozen");
     }
-    public void unfreeze(){
+
+    public void unfreeze() {
         this.frozen = false;
         System.out.println("Gamepiece is unfrozen");
     }
@@ -107,33 +111,51 @@ public class GamePiece {
 }
 
 
-class Runner{
-    public static void main(String[] args){
-     Random random = new Random();
+class Runner {
+    public static void main(String[] args) {
+        Random random = new Random();
 
-        GamePiece gamePiece = new GamePiece("darth vadar", "black");
+        GamePiece gamePiece = new GamePiece("darth vader", "black");
+        gamePiece.move(random.nextInt(200), random.nextInt(600));
+        System.out.println("X is at position " + gamePiece.getPositionX());
+        System.out.println("Y is at position  " + gamePiece.getPositionY());
 
-        gamePiece.move(random.nextInt(100),random.nextInt(500));
 
-        if((gamePiece.getMinX() >= 0) &&
+        if ((gamePiece.getMinX() >= 0) &&
                 (gamePiece.getMaxX() <= 100) &&
-        (gamePiece.getMaxY() <= 500) &&
-                 (gamePiece.getMinY() >= 0)) {
-            System.out.println("X is at position " + gamePiece.getPositionX());
-            System.out.println("Y is at position  " + gamePiece.getPositionY());
-            gamePiece.freeze();
+                (gamePiece.getMaxY() <= 500) &&
+                (gamePiece.getMinY() >= 0)) {
+            System.out.println("Game piece is within the border");
+        } else {
+            System.out.println("Fail: the piece is out of bounds");
         }
-        if(gamePiece.isFrozen() == true){
 
-            System.out.println("game piece is FROZEN!! & cannot move");
+
+
+        if (gamePiece.isFrozen() == false){
+            System.out.println("Success: its defualt is false");
+        } else {
+            System.out.println("Fail, isFrozen() should be false");
         }
-        gamePiece.move(random.nextInt(),random.nextInt());
-        System.out.println();
+
+        gamePiece.freeze();
+        if (gamePiece.isFrozen() == true){
+            System.out.println("Success: isFrozen() is true after calling freeze()");
+        } else {
+            System.out.println("Fail, isFrozen() should be true after calling freeze()");
+        }
 
         gamePiece.unfreeze();
         if(gamePiece.isFrozen() == false){
-            System.out.println("Game piece is NOT frozen");
+            System.out.println("Success, isFrozen() should be set to false when unfreeze is on");
+        } else {
+            System.out.println("Fail: isFrozen() should be set to false ");
         }
 
+
+
+
     }
+
 }
+
