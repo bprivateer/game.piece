@@ -80,20 +80,17 @@ public class GamePiece {
 
     public void move(int newX, int newY){
         if(!this.isFrozen()){
-            this.positionX = positionX;
-            this.positionY = positionY;
+            this.positionX = newX;
+            this.positionY = newY;
         }
-        this.positionX = newX;
-        this.positionY = newY;
-        System.out.println("Moved");
-
-        if(getMaxX() <= 100){
+        if(getMinX() <= newX && newX <= getMaxX() && getMinY() <= newY && newY <= getMaxY()){
+            this.positionY = newY;
+            this.positionX = newX;
+            System.out.println("Moved");
 
         } else {
-
-        }
-        if (getMaxY() <= 500){
-
+            this.positionY = positionY;
+            this.positionX = positionX;
         }
 
     }
@@ -114,12 +111,18 @@ class Runner{
     public static void main(String[] args){
      Random random = new Random();
 
-        GamePiece gamePiece = new GamePiece();
+        GamePiece gamePiece = new GamePiece("darth vadar", "black");
 
-        gamePiece.move(random.nextInt(),random.nextInt());
-        System.out.println("X is at " + gamePiece.getPositionX());
-        System.out.println("Y is at the expected position " + gamePiece.getPositionX());
-        gamePiece.freeze();
+        gamePiece.move(random.nextInt(100),random.nextInt(500));
+
+        if((gamePiece.getPositionX() >= 0) &&
+                (gamePiece.getPositionX() <= 100) &&
+        (gamePiece.getPositionY() <= 500) &&
+                 (gamePiece.getPositionY() >= 0)) {
+            System.out.println("X is at position " + gamePiece.getPositionX());
+            System.out.println("Y is at position  " + gamePiece.getPositionX());
+            gamePiece.freeze();
+        }
         if(gamePiece.isFrozen() == true){
 
             System.out.println("game piece is FROZEN!! & cannot move");
