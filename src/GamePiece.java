@@ -6,72 +6,89 @@ public class GamePiece {
     String color;
 
 
-//    public GamePiece(int positionX, int positionY, boolean frozen, String name, String color){
-//        this.positionX = positionX;
-//        this.positionY = positionY;
-//        this.frozen = frozen;
-//        this.name = name;
-//        this.color = color;
-//    }
-
     public GamePiece(){
-        positionX = 0;
-        positionY = 0;
-        frozen = false;
+        this.positionX = 0;
+        this.positionY = 0;
+        this.frozen = false;
         this.name = name;
         this.color = color;
 
     }
+//    public int move(){
+//        if(freeze() == true){
+//            positionX = 0;
+//            positionY = 0;
+//        }
+//    }
+
 
     public int getpositionX() {
         return positionX;
-    }    public int getPositionY(){
+    }
+    public int getPositionY(){
         return positionY;
     }
-    public boolean getFrozen(){
+    public boolean isFrozen(){
         return true;
     }
 
-//    public GamePiece{
-//        this.name = name;
-//        this.color = color;
-//
-//    }
 
     public String getName(){
-        return name;
+        return this.name;
     }
 
     public String getColor(){
-        return color;
+        return this.color;
     }
 
-    public int move(){
-        return getpositionX();
-        return getPositionY();
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setColor(String color){
+        this.color = color;
     }
 
-    public boolean freeze() {
-        return getFrozen();
+
+    public void move(int newX, int newY){
+
     }
-    public boolean unfreeze(){
+//
+    public void freeze() {
+        this.frozen = true;
+    }
+    public void unfreeze(){
         this.frozen = false;
     }
 
-    public int move(){
-        if(freeze() == true){
-            positionX = 0;
-            positionY = 0;
-        }
-    }
 
 
 }
 
 class Runner{
     public static void main(String[] args){
-        GamePiece.freeze();
-        GamePiece.unfreeze;
-        
+
+
+        GamePiece gamePiece = new GamePiece();
+
+        gamePiece.move(2,9);
+        if(gamePiece.positionX == 2) {
+            System.out.println("X is at 2!");
+        } else {
+            System.out.println("X is not at 2 as expected. Instead it is at " + gamePiece.positionX);
+        }
+        if(gamePiece.positionY ==9){
+            System.out.println("Y is at the expected position of 9");
+        } else {
+            System.out.println("Position is ot at expected output " + gamePiece.positionY);
+        }
+        gamePiece.freeze();
+        if(gamePiece.frozen == true){
+            System.out.println("game piece is FROZEN!!");
+        }
+        gamePiece.unfreeze();
+        if(gamePiece.frozen == false){
+            System.out.println("Game piece is NOT frozen");
+        }
+
     }
 }
