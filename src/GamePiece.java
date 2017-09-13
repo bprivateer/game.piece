@@ -120,6 +120,7 @@ class Runner {
         System.out.println("X is at position " + gamePiece.getPositionX());
         System.out.println("Y is at position  " + gamePiece.getPositionY());
 
+        System.out.println();
 
         if ((gamePiece.getMinX() >= 0) &&
                 (gamePiece.getMaxX() <= 100) &&
@@ -130,6 +131,7 @@ class Runner {
             System.out.println("Fail: the piece is out of bounds");
         }
 
+        System.out.println();
 
 
         if (gamePiece.isFrozen() == false){
@@ -138,12 +140,23 @@ class Runner {
             System.out.println("Fail, isFrozen() should be false");
         }
 
+        System.out.println();
+
         gamePiece.freeze();
         if (gamePiece.isFrozen() == true){
             System.out.println("Success: isFrozen() is true after calling freeze()");
         } else {
             System.out.println("Fail, isFrozen() should be true after calling freeze()");
         }
+
+        System.out.println();
+
+        gamePiece.move(random.nextInt(200), random.nextInt(600));
+        System.out.println("Trying to move while frozen:");
+        System.out.println("X is at position " + gamePiece.getPositionX());
+        System.out.println("Y is at position  " + gamePiece.getPositionY());
+
+        System.out.println();
 
         gamePiece.unfreeze();
         if(gamePiece.isFrozen() == false){
@@ -152,7 +165,11 @@ class Runner {
             System.out.println("Fail: isFrozen() should be set to false ");
         }
 
-
+        System.out.println();
+        gamePiece.move(random.nextInt(200), random.nextInt(600));
+        System.out.println("Trying to move after unfreezing:");
+        System.out.println("X is at position " + gamePiece.getPositionX());
+        System.out.println("Y is at position  " + gamePiece.getPositionY());
 
 
     }
