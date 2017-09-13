@@ -1,35 +1,65 @@
+import java.util.Random;
+
 public class GamePiece {
     int positionX;
     int positionY;
-    boolean frozen;
     String name;
     String color;
+    int minX;
+    int maxX;
+    int minY;
+    int maxY;
+    boolean frozen;
+
 
 
     public GamePiece(){
         this.positionX = 0;
         this.positionY = 0;
+        this.minX = 0;
+        this.maxX = 100;
+        this.minY = 0;
+        this.maxY = 500;
+        this.frozen = false;
+    }
+
+    public GamePiece(String name, String color){
+        this.positionX = 0;
+        this.positionY = 0;
+        this.minX = 0;
+        this.maxX = 100;
+        this.minY = 0;
+        this.maxY = 500;
         this.frozen = false;
         this.name = name;
         this.color = color;
 
     }
-//    public int move(){
-//        if(freeze() == true){
-//            positionX = 0;
-//            positionY = 0;
-//        }
-//    }
 
+    public int getMinX() {
+        return minX;
+    }
 
-    public int getpositionX() {
-        return positionX;
+    public int getMaxX() {
+        return maxX;
+    }
+
+    public int getMinY() {
+        return minY;
+    }
+
+    public int getMaxY() {
+        return maxY;
+    }
+
+    public int getPositionX() {
+        return this.positionX;
     }
     public int getPositionY(){
-        return positionY;
+        return this.positionY;
     }
     public boolean isFrozen(){
-        return true;
+        return this.frozen;
     }
 
 
@@ -48,45 +78,57 @@ public class GamePiece {
         this.color = color;
     }
 
-
     public void move(int newX, int newY){
+        if(!this.isFrozen()){
+            this.positionX = positionX;
+            this.positionY = positionY;
+        }
+        this.positionX = newX;
+        this.positionY = newY;
+        System.out.println("Moved");
+
+        if(getMaxX() <= 100){
+
+        } else {
+
+        }
+        if (getMaxY() <= 500){
+
+        }
 
     }
 //
     public void freeze() {
         this.frozen = true;
+        System.out.println("Gamepiece is frozen");
     }
     public void unfreeze(){
         this.frozen = false;
+        System.out.println("Gamepiece is unfrozen");
     }
-
-
 
 }
 
+
 class Runner{
     public static void main(String[] args){
-
+     Random random = new Random();
 
         GamePiece gamePiece = new GamePiece();
 
-        gamePiece.move(2,9);
-        if(gamePiece.positionX == 2) {
-            System.out.println("X is at 2!");
-        } else {
-            System.out.println("X is not at 2 as expected. Instead it is at " + gamePiece.positionX);
-        }
-        if(gamePiece.positionY ==9){
-            System.out.println("Y is at the expected position of 9");
-        } else {
-            System.out.println("Position is ot at expected output " + gamePiece.positionY);
-        }
+        gamePiece.move(random.nextInt(),random.nextInt());
+        System.out.println("X is at " + gamePiece.getPositionX());
+        System.out.println("Y is at the expected position " + gamePiece.getPositionX());
         gamePiece.freeze();
-        if(gamePiece.frozen == true){
-            System.out.println("game piece is FROZEN!!");
+        if(gamePiece.isFrozen() == true){
+
+            System.out.println("game piece is FROZEN!! & cannot move");
         }
+        gamePiece.move(random.nextInt(),random.nextInt());
+        System.out.println();
+
         gamePiece.unfreeze();
-        if(gamePiece.frozen == false){
+        if(gamePiece.isFrozen() == false){
             System.out.println("Game piece is NOT frozen");
         }
 
